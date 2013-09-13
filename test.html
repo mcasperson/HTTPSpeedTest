@@ -2,14 +2,15 @@
 	<head>
 		<script type="application/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
 		<script type="application/javascript">
-			var completed = 0;
+			var callsToMake = 15;
+            var completed = 0;
 			var start = new Date();
-			for (var i = 0; i < 100; ++i) {
+			for (var i = 0; i < callsToMake; ++i) {
 				$.get('empty?' + Math.random(), function(data) {
 					++completed;
-					if (completed == 100) {
+					if (completed == callsToMake) {
 						var finished = new Date();
-						alert("Time to complete 100 empty calls: " + (finished.getTime() - start.getTime()));	
+						alert("Time to complete " + callsToMake + " empty calls: " + (finished.getTime() - start.getTime()));
 						
 						var tagStart = new Date();
 						$.get('/pressgang-ccms/rest/1/tags/get/json/all?expand=%7B%22branches%22%3A%5B%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A+%22projects%22%7D%7D%2C%7B%22trunk%22%3A%7B%22name%22%3A+%22properties%22%7D%7D%2C%7B%22trunk%22%3A%7B%22name%22%3A+%22categories%22%7D%7D%5D%2C%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D', function(data) {
